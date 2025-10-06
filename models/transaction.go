@@ -7,14 +7,6 @@ func EncodeCTID(ledgerIndex uint32, txIndex uint16, networkID uint16) (string, e
 		return "", fmt.Errorf("ledgerIndex is too large")
 	}
 
-	if txIndex > 0xFFFF {
-		return "", fmt.Errorf("txIndex is too large")
-	}
-
-	if networkID > 0xFFFF {
-		return "", fmt.Errorf("networkID is too large")
-	}
-
 	var ctidValue uint64 = 0xC000000000000000
 	ctidValue = ctidValue + uint64(ledgerIndex)<<32 | uint64(txIndex)<<16 | uint64(networkID)
 
